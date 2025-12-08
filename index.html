@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ejercicioo con Fetch y Firebase</title>
+        <link rel="stylesheet" href="css/Styles.css" />
+    </head>
+    <body>
+        <div class="layout">
+            <!-- Columna Izquierda: Formulario -->
+            <section class="card">
+                <h2>Agregar Producto</h2>
+                <form action="" id="form-product">
+                    <label for=""
+                        >Nombre Del Producto
+                        <input id="nombre" type="text" />
+                    </label>
+                    <label for=""
+                        >Precio
+                        <input id="precio" type="number" />
+                    </label>
+                    <label for=""
+                        >Descripción
+                        <textarea name="" id="descripción"></textarea>
+                    </label>
+                    <button type="submit">Enviar</button>
+                </form>
+            </section>
+            <!-- Columna Derecha Lista -->
+            <section class="card">
+                <h2>Lista de Productos</h2>
+                <ul id="lista-productos">
+                    <li class="producto-item">
+                        <div class="producto-header">
+                            <span class="producto-nombre"
+                                >Fjallraven - Foldsack No. 1 Backpack, Fits 15
+                                Laptops</span
+                            >
+                        </div>
+                        <p class="producto-precio">109.95</p>
+                        <p class="producto-descripcion">
+                            Your perfect pack for everyday use and walks in the
+                            forest. Stash your laptop (up to 15 inches) in the
+                            padded sleeve, your everyday
+                        </p>
+                        <div class="producto-footer">
+                            <button class="btn-eliminar">Eliminar</button>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </div>
+
+        <script src="js/app.js"></script>
+    </body>
+</html>
