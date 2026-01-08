@@ -14,15 +14,18 @@
                 <form action="" id="form-product">
                     <label for=""
                         >Nombre Del Producto
-                        <input id="nombre" type="text" />
+                        <input id="nombre" name="name" type="text" />
                     </label>
                     <label for=""
                         >Precio
-                        <input id="precio" type="number" />
+                        <input id="precio" name="price" type="number" />
                     </label>
                     <label for=""
                         >Descripción
-                        <textarea name="" id="descripción"></textarea>
+                        <textarea
+                            name="description"
+                            id="descripción"
+                        ></textarea>
                     </label>
                     <button type="submit">Enviar</button>
                     <p id="mensaje-error" class="mensaje-error">

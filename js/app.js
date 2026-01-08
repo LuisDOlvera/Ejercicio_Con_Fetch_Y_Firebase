@@ -17,6 +17,15 @@
 </li>;
 */
 
+// Referencias al DOM
+const form = document.getElementById("form-product");
+const inputName = document.querySelector("#form-product input[name='name']");
+const inputPrice = document.querySelector("#form-product input[name='price']");
+const inputDescription = document.querySelector(
+    "#form-product textarea[name='description']"
+);
+const errorMessage = document.getElementById("mensaje-error");
+
 // Petición GET para products
 const getProducts = async () => {
     let response = await fetch(
@@ -25,6 +34,44 @@ const getProducts = async () => {
     let data = await response.json();
     return data;
 };
+
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const name = inputName.value.trim();
+    const price = inputPrice.value.trim();
+    const description = inputDescription.value.trim();
+
+    if (!name || !price || !description) {
+        errorMessage.textContent =
+            "El nombre del producto, precio y dscripción son campos obligatorios";
+        return;
+    }
+    errorMessage.textContent = "";
+
+    const saveProduct = async () => {
+        let newProduct = {
+            name,
+            price,
+            description,
+        };
+
+        let response = await fetch(
+            `https://javascript25g-nuevo-default-rtdb.firebaseio.com/products/.json`,
+            {
+                method: "POST",
+                body: JSON.stringify(newProduct),
+            }
+        );
+        let data = await response.json();
+        return data;
+    };
+
+    saveProduct();
+    printProducts();
+    form.reset();
+    inputName.focus();
+});
 
 const createProductListItem = (productListId, itemProductData) => {
     let { name, price, description } = itemProductData;
@@ -40,7 +87,7 @@ const createProductListItem = (productListId, itemProductData) => {
 
     let productPrice = document.createElement("p");
     productPrice.classList.add("producto-precio");
-    let productPriceText = document.createTextNode(price);
+    let productPriceText = document.createTextNode(`$${price} USD`);
     productPrice.appendChild(productPriceText);
 
     let productDescription = document.createElement("p");
@@ -68,6 +115,8 @@ const createProductListItem = (productListId, itemProductData) => {
 
 const printProducts = async () => {
     let products = await getProducts();
+    let productList = document.getElementById("lista-productos");
+    productList.innerHTML = ""; // Limpiar la lista antes de renderizar
     for (key in products) {
         let productObject = products[key];
         createProductListItem("lista-productos", productObject);
